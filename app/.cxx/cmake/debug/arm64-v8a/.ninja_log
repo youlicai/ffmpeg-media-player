@@ -1,0 +1,51 @@
+# ninja log v5
+3	897	1602829253	CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o	236a14a199315dc9
+897	1136	1602829253	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+1350	1487	1601367502	CMakeFiles/native-lib.dir/cpp/UFilters.cpp.o	b3d6e450b1bb054c
+2	757	1602670545	CMakeFiles/native-lib.dir/cpp/UQueue.cpp.o	921ee637d89a507e
+2	1178	1601367502	CMakeFiles/native-lib.dir/cpp/UAudio.cpp.o	658ce987196a24f4
+0	44	1601367501	build.ninja	bf6a54c2f9357aef
+1349	1517	1601367502	CMakeFiles/native-lib.dir/cpp/UCut.cpp.o	5a4bea4fc23869e5
+2	1180	1601367502	CMakeFiles/native-lib.dir/cpp/UVideo.cpp.o	13b850a6d805614
+1264	1352	1601367502	CMakeFiles/native-lib.dir/cpp/UCallJava.cpp.o	94df6485475fa57d
+1180	1349	1601367502	CMakeFiles/native-lib.dir/cpp/UDecode.cpp.o	b7e2eedb1852b413
+4	628	1601444910	CMakeFiles/native-lib.dir/cpp/UChange.cpp.o	69c1765a6f70faef
+2	854	1602828674	CMakeFiles/native-lib.dir/cpp/UOpenSLES.cpp.o	d1a0f5e97ba84b9a
+4	524	1601367501	CMakeFiles/native-lib.dir/cpp/ShaderUtils.cpp.o	fd14034b0f4b0965
+2	608	1601433657	CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o	fbd39fa2cb074891
+2	896	1602829253	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+2	989	1602829338	CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o	236a14a199315dc9
+989	1226	1602829338	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	808	1602829399	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+3	808	1602829399	CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o	236a14a199315dc9
+808	1042	1602829400	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+1	793	1602829432	CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o	236a14a199315dc9
+793	1021	1602829432	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+3	945	1602829475	CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o	236a14a199315dc9
+945	1180	1602829475	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	782	1602829593	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+3	783	1602829593	CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o	236a14a199315dc9
+783	1019	1602829593	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+3	991	1602829992	CMakeFiles/native-lib.dir/cpp/UAudio.cpp.o	658ce987196a24f4
+3	992	1602829992	CMakeFiles/native-lib.dir/cpp/UVideo.cpp.o	13b850a6d805614
+2	1020	1602829992	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+3	1020	1602829992	CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o	236a14a199315dc9
+1020	1253	1602829992	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	982	1602830056	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+982	1220	1602830056	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	607	1602830076	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+607	852	1602830076	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	1335	1602830144	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+1335	1682	1602830144	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	971	1602830355	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+972	1214	1602830355	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+1	559	1602830382	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+559	782	1602830382	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	968	1602838010	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+968	1219	1602838010	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	953	1602838076	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+953	1192	1602838076	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	972	1602838177	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+972	1216	1602838177	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e
+2	1010	1602838255	CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o	c551053d8dbc00fb
+1010	1266	1602838256	/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	3fd3ff70f3125f3e

@@ -1,0 +1,117 @@
+{
+  "stringTable": {
+    "0": "/Users/apple/dev/faceU 2/app/.cxx/cmake/debug/arm64-v8a",
+    "1": "--target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_lib_EXPORTS -I/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/build/cmake/platforms.cmake",
+    "/Users/apple/dev/faceU 2/app/src/main/CMakeLists.txt",
+    "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "/Users/apple/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/apple/dev/faceU 2/app/.cxx/cmake/debug/arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "/Users/apple/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja  -C \"/Users/apple/dev/faceU 2/app/.cxx/cmake/debug/arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "native-lib-Debug-arm64-v8a": {
+      "buildCommand": "/Users/apple/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/apple/dev/faceU 2/app/.cxx/cmake/debug/arm64-v8a\" native-lib",
+      "buildType": "debug",
+      "toolchain": "3719473576",
+      "abi": "arm64-v8a",
+      "artifactName": "native-lib",
+      "files": [
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/native-lib.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UPlayer.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UAudio.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UVideo.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UEGL.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/ShaderUtils.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UOpenSLES.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UQueue.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UDecode.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UCallJava.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UCut.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UFilters.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/apple/dev/faceU 2/app/src/main/cpp/UChange.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [
+        {
+          "header": "/Users/apple/dev/faceU 2/app/src/main/cpp/ULog.h",
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "output": "/Users/apple/dev/faceU 2/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so",
+      "runtimeFiles": [
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libswresample.so",
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libavutil.so",
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libavcodec.so",
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libavfilter.so",
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libswscale.so",
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libavformat.so",
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libx264.161.so",
+        "/Users/apple/dev/faceU 2/app/src/main/jniLibs/arm64-v8a/libpostproc.so"
+      ]
+    }
+  },
+  "toolchains": {
+    "3719473576": {
+      "cppCompilerExecutable": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

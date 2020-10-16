@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <SurfaceView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:id="@+id/surfaceView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:textColor="#FFB6C1"
+        android:textSize="20dp"
+        android:text="12/60"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="播放" />
+        <Button
+            android:id="@+id/pause"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/play"
+            android:text="暂停" />
+        <Button
+            android:id="@+id/continue_"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/pause"
+            android:text="继续" />
+        <Button
+            android:id="@+id/forward10"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/play"
+            android:text="快进10s" />
+        <Button
+            android:id="@+id/back10"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/forward10"
+            android:layout_below="@id/play"
+            android:text="后退10s" />
+        <Button
+            android:id="@+id/cut"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/forward10"
+            android:text="截图" />
+        <Button
+            android:id="@+id/addbg"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/forward10"
+            android:layout_toRightOf="@id/cut"
+            android:text="添加水印" />
+        <Button
+            android:id="@+id/removebg"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/forward10"
+            android:layout_toRightOf="@id/addbg"
+            android:text="去除水印" />
+
+        <Button
+            android:id="@+id/sounds_heigh"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cut"
+            android:text="声音变大" />
+
+        <Button
+            android:id="@+id/sounds_low"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cut"
+            android:layout_toRightOf="@id/sounds_heigh"
+            android:text="声音变小" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

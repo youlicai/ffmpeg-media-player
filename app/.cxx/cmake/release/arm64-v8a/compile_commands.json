@@ -1,0 +1,79 @@
+[
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/native-lib.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/native-lib.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UPlayer.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UPlayer.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UPlayer.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UAudio.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UAudio.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UAudio.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UVideo.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UVideo.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UVideo.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UEGL.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UEGL.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UEGL.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/ShaderUtils.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/ShaderUtils.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/ShaderUtils.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UOpenSLES.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UOpenSLES.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UOpenSLES.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UQueue.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UQueue.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UQueue.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UDecode.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UDecode.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UDecode.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UCallJava.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UCallJava.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UCallJava.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UCut.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UCut.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UCut.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UFilters.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UFilters.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UFilters.cpp"
+},
+
+{
+  "directory": "/Users/apple/dev/faceU 2/app/.cxx/cmake/release/arm64-v8a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/native-lib.dir/cpp/UChange.cpp.o -c \"/Users/apple/dev/faceU 2/app/src/main/cpp/UChange.cpp\"",
+  "file": "/Users/apple/dev/faceU 2/app/src/main/cpp/UChange.cpp"
+}
+]
