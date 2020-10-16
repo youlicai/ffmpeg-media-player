@@ -14,6 +14,8 @@ UVideo *video=new UVideo();
 UDecode *aDecodec=new UDecode();
 int v_stream_idx = -1;
 int a_stream_idx=-1;
+
+bool search_key_flag= false;
 UPlayer::UPlayer(){
     pthread_mutex_init(&seek_mutex, NULL);
 }
@@ -111,8 +113,19 @@ void UPlayer::play(JNIEnv *env, const char *path_in,const char *path_out,jobject
         }
         if(av_read_frame(pFormatCtx,packet)>=0) {
 //            ii++;
+
             AVFrame *pFrame420 = av_frame_alloc();
             if (packet->stream_index == v_stream_idx) {
+                if(search_key_flag){
+                    //seek后找到关键帧，解决花屏问题。
+                    if (!(packet->flags & AV_PKT_FLAG_KEY)) {
+                        LOGD("NOT AV_PKT_FLAG_KEY");
+                        continue;
+                    }
+                    LOGD("IS AV_PKT_FLAG_KEY");
+                }
+                search_key_flag=false;
+
                 if (aDecodec->decodeV(pFrame420, packet) != 0) {
                     LOGD("decodeV fail");
                     av_packet_unref(packet);
@@ -143,6 +156,7 @@ void UPlayer::continue_() {
 }
 
 void UPlayer::seek(int sec) {
+    search_key_flag=true;
     audio->seeking(true);
     video->seeking(true);
     pthread_mutex_lock(&seek_mutex);
