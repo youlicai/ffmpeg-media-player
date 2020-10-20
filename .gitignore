@@ -1,3 +1,5 @@
 .DS_Store
 /.cxx
 /build
+/.gradle
+/.idea
