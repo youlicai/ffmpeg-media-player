@@ -17,14 +17,21 @@ extern "C"{
 }
 #include<Android/log.h>
 #include "UCallJava.h"
-
 #define TAG "android_jni_uplayer"
 #define LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,TAG,__VA_ARGS__)
+
+#define INIT -1
+#define PLAYING 0
+#define PAUSE 1
+#define SEEKING 2
+
+
 class UPlayer {
 public:
     AVFormatContext *pFormatCtx;
     UCallJava *calljava;
     pthread_mutex_t seek_mutex;
+    int PLAYERSTATUS=INIT;
 
 public:
     UPlayer();
