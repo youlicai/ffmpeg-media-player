@@ -110,20 +110,20 @@ const int program_birth_year = 2003;
 static unsigned sws_flags = SWS_BICUBIC;
 
 typedef struct MyAVPacketList {
-    AVPacket pkt;
-    struct MyAVPacketList *next;
-    int serial;
+    AVPacket pkt; //解封装后的数据
+    struct MyAVPacketList *next; //下一个节点
+    int serial; //序列号
 } MyAVPacketList;
 
 typedef struct PacketQueue {
-    MyAVPacketList *first_pkt, *last_pkt;
-    int nb_packets;
-    int size;
-    int64_t duration;
-    int abort_request;
-    int serial;
-    SDL_mutex *mutex;
-    SDL_cond *cond;
+    MyAVPacketList *first_pkt, *last_pkt;//队首，队尾
+    int nb_packets; //队列中一共有多少个节点
+    int size; //队列所有节点字节总数，用于计算cache大小
+    int64_t duration; //队列所有节点的合计时长
+    int abort_request; //是否要中止队列操作，用于安全快速退出播放
+    int serial; //序列号，和MyAVPacketList的serial作用相同，但改变的时序稍微有点不同
+    SDL_mutex *mutex; //用于维持PacketQueue的多线程安全(SDL_mutex可以按pthread_mutex_t理解）
+    SDL_cond *cond; //用于读、写线程相互通知(SDL_cond可以按pthread_cond_t理解)
 } PacketQueue;
 
 #define VIDEO_PICTURE_QUEUE_SIZE 3
@@ -141,12 +141,19 @@ typedef struct AudioParams {
 } AudioParams;
 
 typedef struct Clock {
+    // 当前帧(待播放)显示时间戳，播放后，当前帧变成上一帧
     double pts;           /* clock base */
+    // 当前帧显示时间戳与当前系统时钟时间的差值
     double pts_drift;     /* clock base minus time at which we updated the clock */
+    // 当前时钟(如视频时钟)最后一次更新时间，也可称当前时钟时间
     double last_updated;
+    // 时钟速度控制，用于控制播放速度
     double speed;
-    int serial;           /* clock is based on a packet with this serial */
+    // 播放序列，所谓播放序列就是一段连续的播放动作，一个seek操作会启动一段新的播放序列
+    int serial;           /* clock is based on a packet with this serial */、
+     // 暂停标志
     int paused;
+     // 指向packet_serial
     int *queue_serial;    /* pointer to the current packet queue serial, used for obsolete clock detection */
 } Clock;
 
@@ -168,15 +175,15 @@ typedef struct Frame {
 
 typedef struct FrameQueue {
     Frame queue[FRAME_QUEUE_SIZE];
-    int rindex;
-    int windex;
-    int size;
-    int max_size;
-    int keep_last;
-    int rindex_shown;
+    int rindex;  // 读索引。待播放时读取此帧进行播放，播放后此帧成为上一帧
+    int windex;  // 写索引
+    int size;  // 总帧数
+    int max_size; // 队列可存储最大帧数
+    int keep_last; // 是否保留已播放的最后一帧使能标志
+    int rindex_shown; // 是否保留已播放的最后一帧实现手段
     SDL_mutex *mutex;
     SDL_cond *cond;
-    PacketQueue *pktq;
+    PacketQueue *pktq;  // 指向对应的packet_queue
 } FrameQueue;
 
 enum {
@@ -396,22 +403,24 @@ int64_t get_valid_channel_layout(int64_t channel_layout, int channels)
         return 0;
 }
 
+//如果开启flush_pkt，则表示开启新的序列
 static int packet_queue_put_private(PacketQueue *q, AVPacket *pkt)
 {
     MyAVPacketList *pkt1;
 
-    if (q->abort_request)
+    if (q->abort_request)////如果已中止，则放入失败
        return -1;
 
     pkt1 = av_malloc(sizeof(MyAVPacketList));
     if (!pkt1)
         return -1;
-    pkt1->pkt = *pkt;
+    pkt1->pkt = *pkt;//拷贝AVPacket(浅拷贝，AVPacket.data等内存并没有拷贝)
     pkt1->next = NULL;
-    if (pkt == &flush_pkt)
+    if (pkt == &flush_pkt)//如果放入的是flush_pkt，需要增加队列的序列号，以区分不连续的两段数据
         q->serial++;
-    pkt1->serial = q->serial;
+    pkt1->serial = q->serial;//用队列序列号标记节点
 
+    //队列操作：如果last_pkt为空，说明队列是空的，新增节点为队头；否则，队列有数据，则让原队尾的next为新增节点。 最后将队尾指向新增节点
     if (!q->last_pkt)
         q->first_pkt = pkt1;
     else
@@ -421,6 +430,8 @@ static int packet_queue_put_private(PacketQueue *q, AVPacket *pkt)
     q->size += pkt1->pkt.size + sizeof(*pkt1);
     q->duration += pkt1->pkt.duration;
     /* XXX: should duplicate packet data in DV case */
+
+    //发出信号，表明当前队列中有数据了，通知等待中的读线程可以取数据了
     SDL_CondSignal(q->cond);
     return 0;
 }
@@ -439,6 +450,7 @@ static int packet_queue_put(PacketQueue *q, AVPacket *pkt)
     return ret;
 }
 
+//存入一个空节点
 static int packet_queue_put_nullpacket(PacketQueue *q, int stream_index)
 {
     AVPacket pkt1, *pkt = &pkt1;
@@ -467,16 +479,21 @@ static int packet_queue_init(PacketQueue *q)
     return 0;
 }
 
+/*
+    清除队列内所有的节点
+*/
 static void packet_queue_flush(PacketQueue *q)
 {
     MyAVPacketList *pkt, *pkt1;
 
     SDL_LockMutex(q->mutex);
+    //队列遍历，遍历过程释放节点和AVPacket
     for (pkt = q->first_pkt; pkt; pkt = pkt1) {
         pkt1 = pkt->next;
         av_packet_unref(&pkt->pkt);
         av_freep(&pkt);
     }
+    //PacketQueue的属性恢复为空队列状
     q->last_pkt = NULL;
     q->first_pkt = NULL;
     q->nb_packets = 0;
@@ -525,13 +542,13 @@ static int packet_queue_get(PacketQueue *q, AVPacket *pkt, int block, int *seria
             break;
         }
 
-        pkt1 = q->first_pkt;
-        if (pkt1) {
-            q->first_pkt = pkt1->next;
+        pkt1 = q->first_pkt;//MyAVPacketList *pkt1; 从队头拿数据
+        if (pkt1) { //队列中有数据
+            q->first_pkt = pkt1->next; //队头移到第二个节点
             if (!q->first_pkt)
                 q->last_pkt = NULL;
             q->nb_packets--;
-            q->size -= pkt1->pkt.size + sizeof(*pkt1);
+            q->size -= pkt1->pkt.size + sizeof(*pkt1); //cache大小扣除一个节点
             q->duration -= pkt1->pkt.duration;
             *pkt = pkt1->pkt;
             if (serial)
@@ -651,6 +668,7 @@ static void frame_queue_unref_item(Frame *vp)
     avsubtitle_free(&vp->sub);
 }
 
+//初始化FrameQueue
 static int frame_queue_init(FrameQueue *f, PacketQueue *pktq, int max_size, int keep_last)
 {
     int i;
@@ -691,16 +709,17 @@ static void frame_queue_signal(FrameQueue *f)
     SDL_UnlockMutex(f->mutex);
 }
 
+//表示从循环队列帧里面取出当前需要显示的一帧视频    当前帧：当前待显示的帧
 static Frame *frame_queue_peek(FrameQueue *f)
 {
     return &f->queue[(f->rindex + f->rindex_shown) % f->max_size];
 }
-
+//表示从循环队列帧里面取出当前需要显示的下一帧视频
 static Frame *frame_queue_peek_next(FrameQueue *f)
 {
     return &f->queue[(f->rindex + f->rindex_shown + 1) % f->max_size];
 }
-
+//上一帧：上次已显示的帧
 static Frame *frame_queue_peek_last(FrameQueue *f)
 {
     return &f->queue[f->rindex];
@@ -1501,13 +1520,13 @@ static double compute_target_delay(double delay, VideoState *is)
 }
 
 static double vp_duration(VideoState *is, Frame *vp, Frame *nextvp) {
-    if (vp->serial == nextvp->serial) {
+    if (vp->serial == nextvp->serial) {//序列连续的情况下
         double duration = nextvp->pts - vp->pts;
         if (isnan(duration) || duration <= 0 || duration > is->max_frame_duration)
-            return vp->duration;
-        else
+            return vp->duration;//如果pts差计算的duration无效，就直接返回Frame中的duration字段
+        else//使用两帧pts差值计算duration，一般情况下也是走的这个分支
             return duration;
-    } else {
+    } else {//序列不连续，直接返回0
         return 0.0;
     }
 }
@@ -1549,30 +1568,36 @@ static void video_refresh(void *opaque, double *remaining_time)
 
             /* dequeue the picture */
             lastvp = frame_queue_peek_last(&is->pictq);
-            vp = frame_queue_peek(&is->pictq);
+            vp = frame_queue_peek(&is->pictq);   
 
-            if (vp->serial != is->videoq.serial) {
-                frame_queue_next(&is->pictq);
-                goto retry;
+            if (vp->serial != is->videoq.serial) {//如果条件成立，说明发生过seek等操作，流不连续
+                frame_queue_next(&is->pictq);//抛弃lastvp
+                goto retry;//返回流程开头重试下一轮
             }
 
+            // lastvp和vp不是同一播放序列(一个seek会开始一个新播放序列)，将frame_timer更新为当前时间
+
             if (lastvp->serial != vp->serial)
-                is->frame_timer = av_gettime_relative() / 1000000.0;
+                is->frame_timer = av_gettime_relative() / 1000000.0;//获取当前系统时间(单位秒)
 
             if (is->paused)
                 goto display;
 
             /* compute nominal last_duration */
-            last_duration = vp_duration(is, lastvp, vp);
-            delay = compute_target_delay(last_duration, is);
+            last_duration = vp_duration(is, lastvp, vp);// 上一帧播放时长：vp->pts - lastvp->pts
+            delay = compute_target_delay(last_duration, is);// 根据视频时钟和同步时钟的差值，计算delay值
 
             time= av_gettime_relative()/1000000.0;
+
+            //假如当前时间小于frame_timer + delay，也就是这帧改显示的时间超前，还没到，就直接返回
+            // 当前帧播放时刻(is->frame_timer+delay)大于当前时刻(time)，表示播放时刻未到
             if (time < is->frame_timer + delay) {
                 *remaining_time = FFMIN(is->frame_timer + delay - time, *remaining_time);
                 goto display;
             }
 
             is->frame_timer += delay;
+            // 校正frame_timer值：若frame_timer落后于当前系统时间太久(超过最大同步域值)，则更新为当前系统时
             if (delay > 0 && time - is->frame_timer > AV_SYNC_THRESHOLD_MAX)
                 is->frame_timer = time;
 
@@ -2745,9 +2770,10 @@ static int read_thread(void *arg)
         ret = AVERROR(ENOMEM);
         goto fail;
     }
-    //请求超时
+    //ffmpeg内部在执行耗时操作时检查是否有退出请求，并提前中断，避免用户退出请求没有及时响应
     ic->interrupt_callback.callback = decode_interrupt_cb;
     ic->interrupt_callback.opaque = is;
+
     if (!av_dict_get(format_opts, "scan_all_pmts", NULL, AV_DICT_MATCH_CASE)) {
         av_dict_set(&format_opts, "scan_all_pmts", "1", AV_DICT_DONT_OVERWRITE);
         scan_all_pmts_set = 1;
@@ -2821,12 +2847,13 @@ static int read_thread(void *arg)
     if (show_status)
         av_dump_format(ic, 0, is->filename, 0);
 
+    
     for (i = 0; i < ic->nb_streams; i++) {
         AVStream *st = ic->streams[i];
         enum AVMediaType type = st->codecpar->codec_type;
         st->discard = AVDISCARD_ALL;
         if (type >= 0 && wanted_stream_spec[type] && st_index[type] == -1)
-            if (avformat_match_stream_specifier(ic, st, wanted_stream_spec[type]) > 0)
+            if (avformat_match_stream_specifier(ic, st, wanted_stream_spec[type]) > 0) 
                 st_index[type] = i;
     }
     for (i = 0; i < AVMEDIA_TYPE_NB; i++) {
@@ -2861,7 +2888,7 @@ static int read_thread(void *arg)
     if (st_index[AVMEDIA_TYPE_VIDEO] >= 0) {
         AVStream *st = ic->streams[st_index[AVMEDIA_TYPE_VIDEO]];
         AVCodecParameters *codecpar = st->codecpar;
-        AVRational sar = av_guess_sample_aspect_ratio(ic, st, NULL);
+        AVRational sar = av_guess_sample_aspect_ratio(ic, st, NULL);//基于流与视频帧的宽高比，猜测视频帧的屏幕宽高比。
         if (codecpar->width)
             set_default_window_size(codecpar->width, codecpar->height, sar);
     }
@@ -2915,7 +2942,8 @@ static int read_thread(void *arg)
             continue;
         }
 #endif
-        //处理定位状态。利用avformat_seek_file()方法定位到实际的位置，如果定位成功，我们需要清空音频解码器、视频解码器中待解码队列的数据。处理完前面的逻辑，我们需要更新外部时钟，并且更新视频同步刷新的时钟
+        //处理定位状态。利用avformat_seek_file()方法定位到实际的位置，如果定位成功，我们需要清空音频解码器、视频解码器中待解码队列的数据。
+        //处理完前面的逻辑，我们需要更新外部时钟，并且更新视频同步刷新的时钟
         if (is->seek_req) {
             int64_t seek_target = is->seek_pos;
             int64_t seek_min    = is->seek_rel > 0 ? seek_target - is->seek_rel + 2: INT64_MIN;
@@ -2929,7 +2957,7 @@ static int read_thread(void *arg)
                        "%s: error while seeking\n", is->ic->filename);
             } else {
                 if (is->audio_stream >= 0) {
-                    packet_queue_flush(&is->audioq);
+                    packet_queue_flush(&is->audioq);//清空&is->audioq
                     packet_queue_put(&is->audioq, &flush_pkt);
                 }
                 if (is->subtitle_stream >= 0) {
@@ -2959,6 +2987,7 @@ static int read_thread(void *arg)
                 if ((ret = av_copy_packet(&copy, &is->video_st->attached_pic)) < 0)
                     goto fail;
                 packet_queue_put(&is->videoq, &copy);
+                //放入空包意味着流的结束
                 packet_queue_put_nullpacket(&is->videoq, is->video_stream);
             }
             is->queue_attachments_req = 0;
@@ -3074,6 +3103,7 @@ static VideoState *stream_open(const char *filename, AVInputFormat *iformat)
     is->xleft   = 0;
 
     /* start video display */
+    //初始化FrameQueue
     if (frame_queue_init(&is->pictq, &is->videoq, VIDEO_PICTURE_QUEUE_SIZE, 1) < 0)
         goto fail;
     if (frame_queue_init(&is->subpq, &is->subtitleq, SUBPICTURE_QUEUE_SIZE, 0) < 0)
@@ -3081,6 +3111,7 @@ static VideoState *stream_open(const char *filename, AVInputFormat *iformat)
     if (frame_queue_init(&is->sampq, &is->audioq, SAMPLE_QUEUE_SIZE, 1) < 0)
         goto fail;
 
+    //初始化FrameQueue 对应的packet包
     if (packet_queue_init(&is->videoq) < 0 ||
         packet_queue_init(&is->audioq) < 0 ||
         packet_queue_init(&is->subtitleq) < 0)
@@ -3312,7 +3343,7 @@ static void event_loop(VideoState *cur_stream)
             case SDLK_9:
                 update_volume(cur_stream, -1, SDL_VOLUME_STEP);
                 break;
-            case SDLK_s: // S: Step to next frame
+            case SDLK_s: // S: Step to next frame。
                 step_to_next_frame(cur_stream);
                 break;
             case SDLK_a:
