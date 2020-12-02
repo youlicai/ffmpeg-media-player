@@ -28,9 +28,7 @@ public class MainActivity extends AppCompatActivity {
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
-
     }
-//    final String src = Environment.getExternalStorageDirectory()+"/aiqgy.mp4";
     final String src = Environment.getExternalStorageDirectory()+"/mkv.mkv";
 //    final String src = Environment.getExternalStorageDirectory()+"/ffmpeg.mp4";
     final String out = Environment.getExternalStorageDirectory()+"/ff_yuv123.pcm";
